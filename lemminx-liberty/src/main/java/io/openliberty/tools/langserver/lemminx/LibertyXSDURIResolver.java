@@ -19,6 +19,7 @@ import java.nio.file.Paths;
 import java.util.HashMap;
 import java.util.Map;
 import java.util.concurrent.TimeUnit;
+import java.util.logging.ConsoleHandler;
 import java.util.logging.Logger;
 
 import org.eclipse.lemminx.uriresolver.CacheResourcesManager;
@@ -38,6 +39,9 @@ public class LibertyXSDURIResolver implements URIResolverExtension, IExternalGra
     private static final String XSD_CLASSPATH_LOCATION = "/schema/xsd/liberty/server.xsd";
     static {
         System.out.println("SKSK: Running with patch developed 11-21-22 of class LibertyXSDURIResolver");
+
+        ConsoleHandler ch = new ConsoleHandler();
+        Logger.getLogger("").addHandler(ch);
     }
 
     /**
