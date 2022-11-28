@@ -19,7 +19,6 @@ import java.nio.file.Paths;
 import java.util.HashMap;
 import java.util.Map;
 import java.util.concurrent.TimeUnit;
-import java.util.logging.ConsoleHandler;
 import java.util.logging.Logger;
 
 import org.eclipse.lemminx.uriresolver.CacheResourcesManager;
@@ -86,7 +85,7 @@ public class LibertyXSDURIResolver implements URIResolverExtension, IExternalGra
                     }
                 }
                 Path serverXSDFile = CacheResourcesManager.getResourceCachePath(SERVER_XSD_RESOURCE);
-                info(LOGGER, "Using cached Liberty schema file located at: " + serverXSDFile.toString());
+                LOGGER.info("Using cached Liberty schema file located at: " + serverXSDFile.toString());
                 return serverXSDFile.toUri().toString();
             } catch (Exception e) {
                 LOGGER.severe("Error: Unable to deploy server.xsd to lemminx cache.");
@@ -94,16 +93,6 @@ public class LibertyXSDURIResolver implements URIResolverExtension, IExternalGra
             }
         }
         return null;
-    }
-
-    private void info(Logger logger2, String msg) {
-        boolean sysoutTest = Boolean.getBoolean("io.openliberty.tools.sysout.enable");
-        boolean sysout = Boolean.getBoolean("io.openliberty.tools.sysout.proxy");
-        if (sysout) {
-            System.err.println(msg);
-        } else {
-            logger2.info(msg);
-        }
     }
 
     @Override
