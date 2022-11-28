@@ -37,12 +37,6 @@ public class LibertyXSDURIResolver implements URIResolverExtension, IExternalGra
 
     private static final String XSD_RESOURCE_URL = "https://github.com/OpenLiberty/liberty-language-server/blob/master/lemminx-liberty/src/main/resources/schema/xsd/liberty/server.xsd";
     private static final String XSD_CLASSPATH_LOCATION = "/schema/xsd/liberty/server.xsd";
-    static {
-        System.out.println("SKSK: Running with patch developed 11-21-22 of class LibertyXSDURIResolver");
-
-        ConsoleHandler ch = new ConsoleHandler();
-        Logger.getLogger("").addHandler(ch);
-    }
 
     /**
      * SERVER_XSD_RESOURCE is the server.xsd that is located at `/schema/server.xsd` that should be deployed (copied) to the .lemminx

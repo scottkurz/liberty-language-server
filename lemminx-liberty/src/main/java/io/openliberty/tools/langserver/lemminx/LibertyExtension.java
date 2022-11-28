@@ -26,6 +26,7 @@ import org.eclipse.lsp4j.InitializeParams;
 import org.eclipse.lsp4j.WorkspaceFolder;
 
 import java.util.List;
+import java.util.logging.ConsoleHandler;
 import java.util.logging.Logger;
 
 import io.openliberty.tools.langserver.lemminx.services.LibertyProjectsManager;
@@ -44,6 +45,8 @@ public class LibertyExtension implements IXMLExtension {
 
     @Override
     public void start(InitializeParams initializeParams, XMLExtensionsRegistry xmlExtensionsRegistry) {
+
+        activateConsoleHandler();
         try {
             List<WorkspaceFolder> folders = initializeParams.getWorkspaceFolders();
             if (folders != null) {
@@ -93,7 +96,12 @@ public class LibertyExtension implements IXMLExtension {
         if (saveContext.getType() == SaveContextType.SETTINGS) {
             Object xmlSettings = saveContext.getSettings();
             SettingsService.getInstance().updateLibertySettings(xmlSettings);
-            LOGGER.fine("Liberty XML settings updated");
+            LOGGER.info("Liberty XML settings updated");
         }
+    }
+
+    private void activateConsoleHandler() {
+        ConsoleHandler ch = new ConsoleHandler();
+        Logger.getLogger("").addHandler(ch);
     }
 }
