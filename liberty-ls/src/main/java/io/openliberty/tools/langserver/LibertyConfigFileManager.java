@@ -71,7 +71,7 @@ public class LibertyConfigFileManager {
         } catch (IOException e) {
             LOGGER.warning("Encountered an IOException on initial custom config processing: " + e.getMessage());
         }
-        // LOGGER.info("Found custom files: server-" + customServerEnvFiles + "; bootstrap-"+customBootstrapFiles);
+         LOGGER.info("Found custom files: server-" + customServerEnvFiles + "; bootstrap-"+customBootstrapFiles);
     }
 
     /**
@@ -79,6 +79,7 @@ public class LibertyConfigFileManager {
      * @param uri - URI-formatted string
      */
     public static void processLibertyPluginConfigXml(String uri) {
+        LOGGER.info("Old bootstrap: " + customBootstrapFiles + ", uri =" + uri);
         if (!uri.endsWith(LIBERTY_PLUGIN_CONFIG_XML)) {
             return;
         }
@@ -97,6 +98,7 @@ public class LibertyConfigFileManager {
         if (customConfigs.containsKey(CUSTOM_SERVER_CONFIG_DIR_TAG)) {
             customConfigDirs.add(customConfigs.get(CUSTOM_SERVER_CONFIG_DIR_TAG));
         }
+        LOGGER.info("New bootstrap: " + customBootstrapFiles);
     }
 
     public static boolean isServerEnvFile(LibertyTextDocument tdi) {

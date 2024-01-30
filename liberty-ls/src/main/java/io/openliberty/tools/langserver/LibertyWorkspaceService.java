@@ -35,6 +35,7 @@ public class LibertyWorkspaceService implements WorkspaceService {
 
     @Override
     public void didChangeWatchedFiles(DidChangeWatchedFilesParams params) {
+        LOGGER.info("SKSK: didChangeWatchedFiles = " + params);
         for (FileEvent change : params.getChanges()) {
             String uri = change.getUri();
             if (uri.endsWith(LibertyConfigFileManager.LIBERTY_PLUGIN_CONFIG_XML)) {

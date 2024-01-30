@@ -60,7 +60,7 @@ public class LibertyLanguageServer extends AbstractLanguageServer implements Pro
 
     @Override
     public void initialized(InitializedParams params) {
-        LOGGER.info("Initialized Liberty Language server");
+        LOGGER.info("Initialized Liberty Language server, parms = " + params);
     }
 
     private ServerCapabilities createServerCapabilities() {

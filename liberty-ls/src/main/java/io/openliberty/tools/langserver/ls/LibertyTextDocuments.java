@@ -15,6 +15,7 @@ package io.openliberty.tools.langserver.ls;
 import java.util.Collection;
 import java.util.HashMap;
 import java.util.Map;
+import java.util.logging.Logger;
 
 import org.eclipse.lsp4j.DidChangeTextDocumentParams;
 import org.eclipse.lsp4j.DidCloseTextDocumentParams;
@@ -24,6 +25,8 @@ import org.eclipse.lsp4j.TextDocumentItem;
 
 // TODO: Add support for incimental updates
 public class LibertyTextDocuments<T extends LibertyTextDocument> {
+
+    private static final Logger LOGGER = Logger.getLogger(LibertyTextDocuments.class.getName());
 
     private final Map<String, T> documents;
 
@@ -50,6 +53,7 @@ public class LibertyTextDocuments<T extends LibertyTextDocument> {
     }
 
     public T onDidChangeTextDocument(DidChangeTextDocumentParams params) {
+        LOGGER.info("SKSK - didchange =" + params);
         synchronized (documents) {
             T document = getDocument(params.getTextDocument());
             if (document != null) {
